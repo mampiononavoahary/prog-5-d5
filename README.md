@@ -38,3 +38,24 @@ Le code est découpé en classes respectant les responsabilités unitaires.
 - `StockManager` : Gère les niveaux d’ingrédients (eau, lait, café, chocolat...).
 - `Monnayeur` : Gère les paiements, les pièces insérées, et le rendu de monnaie.
 - `Afficheur` : Affiche des messages à l’utilisateur (console ou interface graphique).
+
+
+---
+
+## Conventions et normes de codage
+
+### Nommage cohérent et lisible
+
+- **Classes** : `PascalCase` — ex. : `MachineCafe`, `Boisson`, `StockManager`
+- **Méthodes** : `camelCase()` — ex. : `servirBoisson()`, `verifierStock()`
+- **Variables** : `camelCase` — ex. : `quantiteEau`, `prixTotal`
+- **Constantes** : `UPPER_SNAKE_CASE` — ex. : `PRIX_CAFE`, `MAX_CAPACITE_EAU`
+
+### Bonnes pratiques respectées
+
+- **Principe SRP (Single Responsibility Principle)** : chaque classe a une responsabilité unique.
+- **Code modulaire** : séparation claire entre les couches métier, affichage et logique.
+- **Évitement des valeurs magiques** : utilisation de constantes déclarées globalement.
+- **Commentaires clairs** : chaque méthode/documentation de classe est décrite brièvement.
+- **Respect des conventions de style** selon le langage choisi (Java, Python, etc.).
+- **Gestion d'erreurs robuste** : erreurs de paiement, boisson indisponible, stock vide.
