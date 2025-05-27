@@ -59,3 +59,22 @@ Le code est découpé en classes respectant les responsabilités unitaires.
 - **Commentaires clairs** : chaque méthode/documentation de classe est décrite brièvement.
 - **Respect des conventions de style** selon le langage choisi (Java, Python, etc.).
 - **Gestion d'erreurs robuste** : erreurs de paiement, boisson indisponible, stock vide.
+
+---
+
+## Structure des fichiers
+
+```bash
+machine-a-cafe/
+├── src/
+│   ├── MachineCafe.java          # Classe principale
+│   ├── Boisson.java              # Définition des boissons
+│   ├── CatalogueBoissons.java    # Liste de boissons disponibles
+│   ├── StockManager.java         # Gestion du stock d’ingrédients
+│   ├── Monnayeur.java            # Gestion des paiements et rendu de monnaie
+│   └── Afficheur.java            # Interface console ou graphique
+├── tests/                        # Tests unitaires
+│   ├── MachineCafeTest.java
+│   ├── StockManagerTest.java
+├── README.md
+└── .gitignore
