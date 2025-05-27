@@ -23,6 +23,88 @@ Ce projet consiste à simuler le comportement d’une machine à café intellige
 6. **Affichage** : Messages clairs pour guider l’utilisateur (succès, erreurs, instructions).
 7. **Rechargement du stock** : Interface d’administration pour recharger les ingrédients.
 
+---
+
+## Cas d'utilisation (Use Case)
+
+1. L’utilisateur insère une somme d'argent dans la machine.
+2. Le système vérifie que le montant est suffisant pour une boisson.
+3. L’utilisateur sélectionne une boisson dans le catalogue.
+4. Le système vérifie la disponibilité des ingrédients (eau, café, etc.).
+5. Si tout est disponible, la boisson est préparée.
+6. L’utilisateur reçoit sa boisson.
+7. Le système rend la monnaie si nécessaire et affiche un message de confirmation.
+8. Si une erreur survient à n’importe quelle étape (ex. : pas assez d’eau), un message d’erreur est affiché et la transaction est annulée.
+
+---
+
+## Logique métier
+
+- Les prix des boissons sont fixés et stockés dans le `CatalogueBoissons`.
+- La classe `Monnayeur` gère les pièces insérées, valide le montant, et calcule la monnaie à rendre.
+- `StockManager` vérifie si chaque ingrédient requis pour une boisson est disponible.
+- Si les conditions de paiement et de stock sont remplies, la machine prépare la boisson.
+- Si un problème survient (ex. : stock insuffisant), le processus est annulé proprement.
+
+---
+
+## Gestion des erreurs
+
+- **Paiement insuffisant** : Message d'erreur, annulation de la commande.
+- **Ingrédient manquant** (eau, café, lait...) : Message "boisson indisponible".
+- **Rendu de monnaie impossible** : Message d’erreur avec remboursement complet.
+- **Choix invalide de boisson** : Affichage d’un message d’instruction.
+- **Erreur système ou coupure de courant (simulée)** : Interruption du processus avec message d’erreur.
+
+---
+
+## Optimisations
+
+- Architecture orientée objet permettant d’ajouter facilement de nouvelles boissons.
+- Séparation claire des responsabilités (Stock, Paiement, Interface, Logique métier).
+- Utilisation de constantes pour éviter les "magic numbers".
+- Gestion centralisée des erreurs avec exceptions personnalisées (ex. : `BoissonIndisponibleException`, `StockInsuffisantException`).
+- Testabilité : chaque composant peut être testé de manière indépendante (Mock du stock, paiement...).
+
+---
+
+## Modélisation
+
+### Diagramme de classes (simplifié)
+
++------------------+
+| MachineCafe |
++------------------+
+| - stockManager |
+| - monnayeur |
+| - afficheur |
+| - catalogue |
++------------------+
+| +servirBoisson() |
+| +demarrer() |
++------------------+
+
+    |
+    v
+
++------------------+ +------------------+ +------------------+
+| Boisson | | StockManager | | Monnayeur |
++------------------+ +------------------+ +------------------+
+| nom | | stockIngredients | | montantActuel |
+| prix | | +verifier() | | +insererPiece() |
+| ingredients | | +reduireStock() | | +rendreMonnaie() |
++------------------+ +------------------+ +------------------+
+
+
+                        |
+                        v
+                 +------------------+
+                 |    Afficheur     |
+                 +------------------+
+                 | +afficher()      |
+                 | +erreur()        |
+                 +------------------+
+
 
 ---
 
@@ -38,7 +120,6 @@ Le code est découpé en classes respectant les responsabilités unitaires.
 - `StockManager` : Gère les niveaux d’ingrédients (eau, lait, café, chocolat...).
 - `Monnayeur` : Gère les paiements, les pièces insérées, et le rendu de monnaie.
 - `Afficheur` : Affiche des messages à l’utilisateur (console ou interface graphique).
-
 
 ---
 
