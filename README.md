@@ -22,3 +22,19 @@ Ce projet consiste à simuler le comportement d’une machine à café intellige
 5. **Rendu de monnaie** : Si un excédent est détecté, la machine rend la monnaie.
 6. **Affichage** : Messages clairs pour guider l’utilisateur (succès, erreurs, instructions).
 7. **Rechargement du stock** : Interface d’administration pour recharger les ingrédients.
+
+
+---
+
+## Architecture orientée objet
+
+Le code est découpé en classes respectant les responsabilités unitaires.
+
+### Schéma de classes
+
+- `MachineCafe` : Contrôleur principal de la machine.
+- `Boisson` : Représente une boisson avec ses propriétés (nom, prix, ingrédients requis).
+- `CatalogueBoissons` : Contient la liste des boissons disponibles.
+- `StockManager` : Gère les niveaux d’ingrédients (eau, lait, café, chocolat...).
+- `Monnayeur` : Gère les paiements, les pièces insérées, et le rendu de monnaie.
+- `Afficheur` : Affiche des messages à l’utilisateur (console ou interface graphique).
