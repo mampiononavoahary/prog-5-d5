@@ -16,7 +16,7 @@ public class PaymentProcessor {
         int choice = scanner.nextInt();
 
         Random rand = new Random();
-        boolean success = rand.nextBoolean(); // Simule succès/échec
+        boolean success = rand.nextBoolean();
 
         if (!success) {
             System.out.println("Erreur : Paiement refusé ou problème de connexion.");
